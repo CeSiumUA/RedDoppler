@@ -1,4 +1,5 @@
 ﻿using DopplerLib.Authentication;
+using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +7,6 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using static System.Net.WebRequestMethods;
 
 namespace DopplerCLI
 {
@@ -14,41 +14,22 @@ namespace DopplerCLI
     {
         public static async Task Main(string[] args)
         {
-            HashingMachine hashingMachine = new HashingMachine("21288221");
-            while (true)
-            {
-                Console.WriteLine(await hashingMachine.GenerateCompleteHash("user", "12345"));
-                Console.ReadLine();
-            }
+            var connection = new HubConnectionBuilder().WithUrl("https://localhost:5001/", options => { options.AccessTokenProvider = async () => await GetToken(); }).Build();
         }
-    }
-    public class TestClass
-    {
-        public string TestName
+        private static async Task<string> GetToken()
         {
-            get
-            {
-                return testName;
-            }
-            set
-            {
-                testName = value;
-            }
+            return "token";
         }
-        [Key]
-        public Guid Id { get; set; }
-        private string testName { get; set; }
     }
     public class TestContext:DbContext
     {
-        public DbSet<TestClass> TestClasses { get; set; }
         public TestContext()
         {
             Database.EnsureCreated();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=TestDB;Trusted_Connection=true;");
+            optionsBuilder.UseSqlServer("Server=localhost;Database=DopplerDB;Trusted_Connection=true;");
         }
     }
 }

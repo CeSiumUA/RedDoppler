@@ -59,5 +59,14 @@ namespace DopplerAPI.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string DBConnectionString {
+            get {
+                return ResourceManager.GetString("DBConnectionString", resourceCulture);
+            }
+        }
     }
 }

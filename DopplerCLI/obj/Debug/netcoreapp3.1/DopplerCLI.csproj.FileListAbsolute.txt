@@ -42,9 +42,15 @@ C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\DopplerCL
 C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\DopplerCLI.dll
 C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\DopplerCLI.pdb
 C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\mtgin\source\repos\Doppler\DopplerCLI\obj\Debug\netcoreapp3.1\DopplerCLI.csproj.CoreCompileInputs.cache
 C:\Users\mtgin\source\repos\Doppler\DopplerCLI\obj\Debug\netcoreapp3.1\DopplerCLI.dll
 C:\Users\mtgin\source\repos\Doppler\DopplerCLI\obj\Debug\netcoreapp3.1\DopplerCLI.pdb
 C:\Users\mtgin\source\repos\Doppler\DopplerCLI\obj\Debug\netcoreapp3.1\DopplerCLI.genruntimeconfig.cache
 C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\DopplerLib.dll
 C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\DopplerLib.pdb
+C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Connections.Abstractions.dll
+C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.SignalR.Client.Core.dll
+C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.SignalR.Common.dll
+C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
+C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\System.Threading.Channels.dll
