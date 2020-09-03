@@ -1,0 +1,14 @@
+C:\Users\mtgin\source\repos\Doppler\Doppler\Doppler\bin\Debug\netstandard2.0\Doppler.deps.json
+C:\Users\mtgin\source\repos\Doppler\Doppler\Doppler\bin\Debug\netstandard2.0\Doppler.dll
+C:\Users\mtgin\source\repos\Doppler\Doppler\Doppler\bin\Debug\netstandard2.0\ref\Doppler.dll
+C:\Users\mtgin\source\repos\Doppler\Doppler\Doppler\bin\Debug\netstandard2.0\Doppler.pdb
+C:\Users\mtgin\source\repos\Doppler\Doppler\Doppler\obj\Debug\netstandard2.0\Doppler.csprojAssemblyReference.cache
+C:\Users\mtgin\source\repos\Doppler\Doppler\Doppler\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\mtgin\source\repos\Doppler\Doppler\Doppler\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\mtgin\source\repos\Doppler\Doppler\Doppler\obj\Debug\netstandard2.0\Doppler.AssemblyInfoInputs.cache
+C:\Users\mtgin\source\repos\Doppler\Doppler\Doppler\obj\Debug\netstandard2.0\Doppler.AssemblyInfo.cs
+C:\Users\mtgin\source\repos\Doppler\Doppler\Doppler\obj\Debug\netstandard2.0\Doppler.csproj.CoreCompileInputs.cache
+C:\Users\mtgin\source\repos\Doppler\Doppler\Doppler\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\mtgin\source\repos\Doppler\Doppler\Doppler\obj\Debug\netstandard2.0\Doppler.dll
+C:\Users\mtgin\source\repos\Doppler\Doppler\Doppler\obj\Debug\netstandard2.0\ref\Doppler.dll
+C:\Users\mtgin\source\repos\Doppler\Doppler\Doppler\obj\Debug\netstandard2.0\Doppler.pdb

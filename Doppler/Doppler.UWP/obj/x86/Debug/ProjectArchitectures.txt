@@ -1,0 +1,1 @@
+C:\Users\mtgin\source\repos\Doppler\Doppler\Doppler.UWP\Doppler.UWP.csproj;x86

@@ -1,0 +1,9 @@
+C:\Users\mtgin\source\repos\Doppler\DopplerLib\bin\Debug\netstandard2.0\DopplerLib.deps.json
+C:\Users\mtgin\source\repos\Doppler\DopplerLib\bin\Debug\netstandard2.0\DopplerLib.dll
+C:\Users\mtgin\source\repos\Doppler\DopplerLib\obj\Debug\netstandard2.0\DopplerLib.csprojAssemblyReference.cache
+C:\Users\mtgin\source\repos\Doppler\DopplerLib\obj\Debug\netstandard2.0\DopplerLib.AssemblyInfoInputs.cache
+C:\Users\mtgin\source\repos\Doppler\DopplerLib\obj\Debug\netstandard2.0\DopplerLib.AssemblyInfo.cs
+C:\Users\mtgin\source\repos\Doppler\DopplerLib\bin\Debug\netstandard2.0\DopplerLib.pdb
+C:\Users\mtgin\source\repos\Doppler\DopplerLib\obj\Debug\netstandard2.0\DopplerLib.csproj.CoreCompileInputs.cache
+C:\Users\mtgin\source\repos\Doppler\DopplerLib\obj\Debug\netstandard2.0\DopplerLib.dll
+C:\Users\mtgin\source\repos\Doppler\DopplerLib\obj\Debug\netstandard2.0\DopplerLib.pdb
