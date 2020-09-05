@@ -1,0 +1,15 @@
+Doppler/Doppler.Android/bin
+Doppler/Doppler.Android/obj
+Doppler/Doppler.iOS/bin
+Doppler/Doppler.iOS/obj
+Doppler/Doppler/bin
+Doppler/Doppler/obj
+DopplerAPI/bin
+DopplerAPI/obj
+Doppler/Doppler.UWP/bin
+Doppler/Doppler.UWP/obj
+Doppler/Doppler.UWP/bin/x86/Debug/Doppler.dll
+DopplerCLI/bin
+DopplerCLI/obj
+DopplerLib/bin
+DopplerLib/obj

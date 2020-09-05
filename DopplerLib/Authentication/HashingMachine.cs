@@ -73,5 +73,40 @@ namespace DopplerLib.Authentication
         {
             return "";
         }
+        public static bool ComparePasswordEquality(string storedHash, string rawPassword)
+        {
+            byte[] hashedBytes = Convert.FromBase64String(storedHash);
+            byte[] salt = new byte[16];
+            Array.Copy(hashedBytes, 0, salt, 0, 16);
+            using(Rfc2898DeriveBytes rfcBytes = new Rfc2898DeriveBytes(rawPassword, salt, 1000000))
+            {
+                byte[] hash = rfcBytes.GetBytes(20);
+                for(int i = 0; i < 20; i++)
+                {
+                    if(hashedBytes[i+16] != hash[i])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        } 
+        public static string HashPassword(string password)
+        {
+            byte[] salt;
+            using (RNGCryptoServiceProvider rNGCryptoServiceProvider = new RNGCryptoServiceProvider())
+            {
+                rNGCryptoServiceProvider.GetBytes(salt = new byte[16]);
+            }
+            byte[] hash = null;
+            using(Rfc2898DeriveBytes rfc = new Rfc2898DeriveBytes(password, salt, 1000000))
+            {
+                hash = rfc.GetBytes(20);
+            }
+            byte[] hashBytes = new byte[36];
+            Array.Copy(salt, 0, hashBytes, 0, 16);
+            Array.Copy(hash, 0, hashBytes, 16, 20);
+            return Convert.ToBase64String(hashBytes);
+        }
     }
 }

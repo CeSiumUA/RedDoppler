@@ -1,11 +1,16 @@
 ﻿using DopplerLib.Authentication;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using System.Net.Mime;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DopplerCLI
@@ -14,11 +19,38 @@ namespace DopplerCLI
     {
         public static async Task Main(string[] args)
         {
-            var connection = new HubConnectionBuilder().WithUrl("https://localhost:5001/", options => { options.AccessTokenProvider = async () => await GetToken(); }).Build();
+            try
+            {
+                string Token = await GetToken();
+                var connection = new HubConnectionBuilder().WithUrl("https://localhost:5001/chats", options => { options.AccessTokenProvider = () => Task.FromResult(Token); }).WithAutomaticReconnect().Build();
+                await connection.StartAsync();
+            }
+            catch(Exception exc)
+            {
+                Console.WriteLine(exc.ToString());
+            }
+            Console.ReadLine();
         }
         private static async Task<string> GetToken()
         {
-            return "token";
+
+            using(HttpClient httpClient = new HttpClient())
+            {
+                HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, "https://localhost:5001/auth");
+                LoginInstance loginInstance = new LoginInstance()
+                {
+                    Login = "fedir",
+                    Password = "12345Aa-"
+                };
+                using (StringContent stringContent = new StringContent(JsonConvert.SerializeObject(loginInstance)))
+                {
+                    requestMessage.Content = stringContent;
+                    requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+                    var result = (await httpClient.SendAsync(requestMessage));
+                    var loggedUser = JsonConvert.DeserializeObject<AuthenticatedUser>(await result.Content.ReadAsStringAsync());
+                    return loggedUser.AccessToken;
+                }
+            }
         }
     }
     public class TestContext:DbContext

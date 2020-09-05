@@ -13,6 +13,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
+using DopplerAPI.Chatting;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using DopplerAPI.Authentication;
 
 namespace DopplerAPI
 {
@@ -24,30 +28,33 @@ namespace DopplerAPI
         {
             services.AddControllers();
             services.AddDbContext<ServerDBcontext>(options => options.UseSqlServer(Properties.Resources.DBConnectionString));
-            services.AddIdentity<ServerUserIdentity, IdentityRole>().AddEntityFrameworkStores<ServerDBcontext>().AddDefaultTokenProviders();
-            services.AddAuthentication(options =>
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options =>
-            {
-                options.Authority = "localhost";
+                options.RequireHttpsMetadata = true;
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = TokenAuth.Issuer,
+                    ValidateAudience = true,
+                    ValidAudience = TokenAuth.Audience,
+                    ValidateLifetime = true,
+                    IssuerSigningKey = TokenAuth.GetSymmetricSecurityKey()
+                };
                 options.Events = new JwtBearerEvents
                 {
                     OnMessageReceived = context =>
                     {
-                        var accesstoken = context.Request.Query["access_token"];
+                        var accessToken = context.Request.Query["access_token"];
                         var path = context.HttpContext.Request.Path;
-                        if (!string.IsNullOrEmpty(accesstoken) && (path.StartsWithSegments("/hubs/chat")))
+                        if (!string.IsNullOrEmpty(accessToken) && (path.StartsWithSegments("/chat")))
                         {
-                            context.Token = accesstoken;
+                            context.Token = accessToken;
                         }
                         return Task.CompletedTask;
                     }
                 };
             });
             services.AddSignalR();
-            services.AddSingleton<IUserIdProvider, ServerNameProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +68,8 @@ namespace DopplerAPI
             {
                 app.UseHsts();
             }
+            app.UseStaticFiles();
+            app.UseDefaultFiles();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
@@ -68,6 +77,7 @@ namespace DopplerAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatsHub>("/chats");
             });
         }
     }
