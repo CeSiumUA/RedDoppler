@@ -13,8 +13,8 @@ namespace DopplerLib.Authentication
         public string AccessToken { get; set; }
         public DateTime TokenIssued { get; set; }
         public DateTime TokenExpired { get; set; }
-        public User User { get; set; }
-        public static async Task<AuthenticatedUser> Authenticate(string userName, string Password)
+        public Contact Contact { get; set; }
+        public static async Task<AuthenticatedUser> CreateAuthenticate(string userName, string Password)
         {
             using (HttpClient httpClient = new HttpClient())
             {
@@ -37,6 +37,37 @@ namespace DopplerLib.Authentication
                     catch(Exception exc)
                     {
                         return null;
+                    }
+                }
+            }
+        }
+
+        public async Task Authenticate(string userName, string Password)
+        {
+            using (HttpClient httpClient = new HttpClient())
+            {
+                HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, "https://localhost:5001/auth");
+                LoginInstance loginInstance = new LoginInstance()
+                {
+                    Login = userName,
+                    Password = Password
+                };
+                using (StringContent stringContent = new StringContent(JsonConvert.SerializeObject(loginInstance)))
+                {
+                    requestMessage.Content = stringContent;
+                    requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+                    try
+                    {
+                        var result = await httpClient.SendAsync(requestMessage);
+                        var loggedUser = JsonConvert.DeserializeObject<AuthenticatedUser>(await result.Content.ReadAsStringAsync());
+                        this.AccessToken = loggedUser.AccessToken;
+                        this.TokenExpired = loggedUser.TokenExpired;
+                        this.TokenIssued = loggedUser.TokenIssued;
+                        this.Contact = loggedUser.Contact;
+                    }
+                    catch (Exception exc)
+                    {
+                       
                     }
                 }
             }

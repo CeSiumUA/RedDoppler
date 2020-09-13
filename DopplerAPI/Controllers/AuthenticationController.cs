@@ -43,15 +43,14 @@ namespace DopplerAPI.Controllers
                     var expireTime = currentTime.AddMinutes(TokenAuth.Lifetime);
                     JwtSecurityToken jwt = new JwtSecurityToken(issuer: TokenAuth.Issuer, audience: TokenAuth.Audience, notBefore: currentTime, claims: claimsIdentity.Claims, expires: expireTime, signingCredentials: new Microsoft.IdentityModel.Tokens.SigningCredentials(TokenAuth.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
                     var encodedJWT = new JwtSecurityTokenHandler().WriteToken(jwt);
-                    var response = new
+                    AuthenticatedUser authedUser = new AuthenticatedUser()
                     {
                         AccessToken = encodedJWT,
-                        TokenIssued = currentTime,
                         TokenExpired = expireTime,
-                        User = user
+                        TokenIssued = currentTime,
+                        Contact = user.Contact
                     };
-
-                    return new JsonResult(response);
+                    return new JsonResult(authedUser);
                 }
                 else
                 {

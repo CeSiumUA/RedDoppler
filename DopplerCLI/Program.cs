@@ -1,8 +1,10 @@
-﻿using DopplerLib.Authentication;
+﻿using DopplerLib;
+using DopplerLib.Authentication;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Net;
@@ -17,19 +19,25 @@ namespace DopplerCLI
 {
     public class Program
     {
+        private static HubConnection _hubConnection;
         public static async Task Main(string[] args)
         {
             try
             {
                 string Token = await GetToken();
-                var connection = new HubConnectionBuilder().WithUrl("https://localhost:5001/chats", options => { options.AccessTokenProvider = () => Task.FromResult(Token); }).WithAutomaticReconnect().Build();
-                await connection.StartAsync();
+                _hubConnection = new HubConnectionBuilder().WithUrl("https://localhost:5001/chats", options => { options.AccessTokenProvider = () => Task.FromResult(Token); }).WithAutomaticReconnect().Build();
+                await _hubConnection.StartAsync();
+                await GetContacts();
             }
             catch(Exception exc)
             {
                 Console.WriteLine(exc.ToString());
             }
             Console.ReadLine();
+        }
+        private static async Task GetContacts()
+        {
+            var contacts = await _hubConnection.InvokeAsync<IEnumerable<Contact>>("GetUserContacts");
         }
         private static async Task<string> GetToken()
         {
@@ -48,6 +56,7 @@ namespace DopplerCLI
                     requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
                     var result = (await httpClient.SendAsync(requestMessage));
                     var loggedUser = JsonConvert.DeserializeObject<AuthenticatedUser>(await result.Content.ReadAsStringAsync());
+                    Console.WriteLine(JsonConvert.SerializeObject(loggedUser, Formatting.Indented));
                     return loggedUser.AccessToken;
                 }
             }

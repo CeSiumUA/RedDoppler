@@ -9,7 +9,7 @@ namespace DopplerLib.Messaging
     public class Message
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         #region Properties
         public ConversationMember Owner
         {

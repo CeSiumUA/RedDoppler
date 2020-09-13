@@ -61,4 +61,9 @@ C:\Users\mtgin\source\repos\Doppler\DopplerCLI\obj\Debug\netcoreapp3.1\DopplerCL
 C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\System.Net.Http.Json.dll
 C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\System.Text.Json.dll
 C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
-C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.xml
+C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\mtgin\source\repos\Doppler\DopplerCLI\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
